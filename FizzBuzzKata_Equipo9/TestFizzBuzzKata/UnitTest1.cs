@@ -11,31 +11,54 @@ namespace TestFizzBuzzKata
         FizzBuzz fb = new FizzBuzz();
         List<object> numbers = new List<object>();
 
+        Handler handlerFizzBuzz = new HandlerIsFizzBuzz();
+        Handler handlerFizz = new HandlerIsFizz();
+        Handler handlerBuzz = new HandlerIsBuzz();
+
+
         [Test]
         public void Test_get_1_when_value_is_1()
         {
-            numbers = fb.getList();
+            handlerFizzBuzz.SetNext(handlerFizz);
+            handlerFizz.SetNext(handlerBuzz);
+          
+
+            numbers = fb.getList(handlerFizzBuzz);
             Assert.AreEqual(1, numbers[0]);
         }
 
         [Test]
         public void Test_get_Fizz_when_value_is_3()
         {
-            numbers = fb.getList();
-           Assert.AreEqual("Fizz", numbers[2]);
+            handlerFizzBuzz.SetNext(handlerFizz);
+            handlerFizz.SetNext(handlerBuzz);
+          
+
+            numbers = fb.getList(handlerFizzBuzz);
+            Assert.AreEqual("Fizz", numbers[2]);
         }
 
         [Test]
         public void Test_get_Buzz_when_value_is_5()
         {
-            numbers = fb.getList();
+            handlerFizzBuzz.SetNext(handlerFizz);
+            handlerFizz.SetNext(handlerBuzz);
+            
+
+
+            numbers = fb.getList(handlerFizzBuzz);
             Assert.AreEqual("Buzz", numbers[4]);
         }
         [Test]
         public void Test_get_FizzBuzz_when_value_are_3_and_5()
         {
-            numbers = fb.getList();
-           Assert.AreEqual("FizzBuzz", numbers[14]);
+            handlerFizzBuzz.SetNext(handlerFizz);
+            handlerFizz.SetNext(handlerBuzz);
+        
+
+
+            numbers = fb.getList(handlerFizzBuzz);
+            Assert.AreEqual("FizzBuzz", numbers[14]);
         }
 
 
@@ -62,7 +85,11 @@ namespace TestFizzBuzzKata
         [TestCase(20, ExpectedResult = "Buzz")]
         public object Test_correct_values_for_20_numbers(int n)
         {
-            numbers = fb.getList();
+            handlerFizzBuzz.SetNext(handlerFizz);
+            handlerFizz.SetNext(handlerBuzz);
+            numbers = fb.getList(handlerFizzBuzz);
+            
+
             return numbers[n-1];
         }
     }

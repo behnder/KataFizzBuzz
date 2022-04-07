@@ -8,21 +8,25 @@ namespace FizzBuzzKata_Equipo9
 {
     public class FizzBuzz
     {
+
+       
+
         List<Object> cienNumeros = new List<Object>();
 
-        public List<Object> getList()
+        public List<Object> getList(Handler handler)
         {
 
             for (int i = 1; i <= 100; i++)
             {
-
-                cienNumeros.Add(IsFizzBuzzFor(i) ? "FizzBuzz" : IsFizzFor(i) ? "Fizz" : IsBuzzFor(i) ? "Buzz" : (i as object));
+                //   cienNumeros.Add(IsFizzBuzzFor(i) ? "FizzBuzz" : IsFizzFor(i) ? "Fizz" : IsBuzzFor(i) ? "Buzz" : (i as object));
+                cienNumeros.Add(handler.ProcessNumber(i));    
+            
             }
 
             return cienNumeros;
 
         }
-
+/*
         private bool IsFizzFor(int number)
         {
            
@@ -35,7 +39,7 @@ namespace FizzBuzzKata_Equipo9
         private bool IsFizzBuzzFor(int number)
         {
             return (IsFizzFor(number) && IsBuzzFor(number));
-        }
+        }*/
 
     }
 }

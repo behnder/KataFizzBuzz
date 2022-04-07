@@ -10,6 +10,18 @@ namespace FizzBuzzKata_Equipo9
     {
         static void Main(string[] args)
         {
+            Handler handlerFizzBuzz = new HandlerIsFizzBuzz();
+            Handler handlerFizz = new HandlerIsFizz();
+            Handler handlerBuzz = new HandlerIsBuzz();
+        
+            handlerFizzBuzz.SetNext(handlerFizz);
+            handlerFizz.SetNext(handlerBuzz);
+         
+
+
+            FizzBuzz _fizzBuzzCalculator = new FizzBuzz();
+            _fizzBuzzCalculator.getList(handlerFizzBuzz);
+
         }
     }
 }
